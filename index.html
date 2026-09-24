@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bug Bounty Reports | Calm Ay</title>
+  <title>Bug Bounty Reports | 0xC4LM4Y</title>
   <meta name="description" content="Bug bounty submissions by Rasaq Ayomide (Calm Ay) — real vulnerability research, CORS misconfigurations, IDOR testing, and coordinated disclosure reports."/>
-  <meta property="og:title" content="Bug Bounty Reports | Calm Ay"/>
+  <meta property="og:title" content="Bug Bounty Reports | 0xC4LM4Y"/>
   <meta property="og:description" content="Real bug bounty submissions — vulnerability research, methodology, and proof-of-concept writeups."/>
   <meta property="og:url" content="https://calm-ay.github.io/bug-bounty-reports/"/>
-  <meta property="og:image" content="https://calm-ay.github.io/photo.jpg"/>
+  <meta property="og:image" content="https://calm-ay.github.io/img/og-card.png"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Bug Bounty Reports | Calm Ay"/>
+  <meta name="twitter:title" content="Bug Bounty Reports | 0xC4LM4Y"/>
   <meta name="twitter:description" content="Real bug bounty submissions — vulnerability research, methodology, and proof-of-concept writeups."/>
-  <meta name="twitter:image" content="https://calm-ay.github.io/photo.jpg"/>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23e62020' d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z'/></svg>"/>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="twitter:image" content="https://calm-ay.github.io/img/og-card.png"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%2300d4aa' d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z'/></svg>"/>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-    :root{--red:#e62020;--white:#ffffff;--black:#000000;--card:#0d0d0d;--gray:#777;--border:#1c1c1c;}
+    :root{--red:#00d4aa;--white:#e6f2ee;--black:#04070a;--card:#0e1417;--gray:#a7b8b3;--border:#1b2830;--green:#3cf0c6;}
     html{scroll-behavior:smooth;}
-    body{background:var(--black);color:var(--white);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
+    body{background:var(--black);color:var(--white);font-family:'JetBrains Mono',sans-serif;overflow-x:hidden;}
     ::-webkit-scrollbar{width:3px;}
     ::-webkit-scrollbar-track{background:#000;}
     ::-webkit-scrollbar-thumb{background:var(--red);}
 
     nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 50px;background:rgba(0,0,0,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
-    .nav-logo{display:flex;align-items:center;gap:8px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;letter-spacing:3px;color:var(--white);text-decoration:none;}
+    .nav-logo{display:flex;align-items:center;gap:8px;font-family:'Chakra Petch',sans-serif;font-weight:900;font-size:1.1rem;letter-spacing:3px;color:var(--white);text-decoration:none;}
     .nav-logo .bolt{color:var(--red);}
     .nav-back{font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;font-weight:700;transition:color 0.2s;}
     .nav-back:hover{color:var(--white);}
@@ -33,7 +33,7 @@
     .wrap{max-width:1100px;margin:0 auto;padding:0 60px;}
     .label{display:flex;align-items:center;gap:12px;font-size:0.68rem;letter-spacing:3px;color:var(--red);text-transform:uppercase;font-weight:700;margin-bottom:28px;}
     .label::before{content:'';display:block;width:28px;height:2px;background:var(--red);}
-    .heading{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,7vw,6rem);line-height:0.9;text-transform:uppercase;}
+    .heading{font-family:'Chakra Petch',sans-serif;font-weight:900;font-size:clamp(3rem,7vw,6rem);line-height:0.9;text-transform:uppercase;}
     .heading .w{color:var(--white);display:block;}
     .heading .r{color:var(--red);display:block;}
 
@@ -51,7 +51,7 @@
     .writeup-card::before,.writeup-card::after{content:'';position:absolute;width:14px;height:14px;}
     .writeup-card::before{top:-1px;left:-1px;border-top:2px solid var(--red);border-left:2px solid var(--red);}
     .writeup-card::after{bottom:-1px;right:-1px;border-bottom:2px solid var(--red);border-right:2px solid var(--red);}
-    .writeup-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.5rem;color:#1a1a1a;line-height:1;flex-shrink:0;width:50px;}
+    .writeup-num{font-family:'Chakra Petch',sans-serif;font-weight:900;font-size:2.5rem;color:#1a1a1a;line-height:1;flex-shrink:0;width:50px;}
     .writeup-body{flex:1;}
     .writeup-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
     .tag{font-size:0.58rem;letter-spacing:1.5px;text-transform:uppercase;border:1px solid #2a2a2a;color:var(--gray);padding:2px 8px;border-radius:2px;font-weight:600;}
@@ -69,12 +69,12 @@
 
     /* STATS */
     .stats{display:flex;gap:60px;border-top:1px solid var(--border);padding-top:40px;margin-top:40px;flex-wrap:wrap;}
-    .stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3.5rem;color:var(--red);line-height:1;}
+    .stat-num{font-family:'Chakra Petch',sans-serif;font-weight:900;font-size:3.5rem;color:var(--red);line-height:1;}
     .stat-lbl{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-top:4px;}
 
     /* FOOTER */
     .footer{padding:60px 0 40px;border-top:1px solid var(--border);}
-    .footer-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,9vw,8rem);text-transform:uppercase;color:transparent;-webkit-text-stroke:1px #2a0000;margin-top:40px;line-height:1;user-select:none;overflow:hidden;}
+    .footer-name{font-family:'Chakra Petch',sans-serif;font-weight:900;font-size:clamp(3rem,9vw,8rem);text-transform:uppercase;color:transparent;-webkit-text-stroke:1px #05231c;margin-top:40px;line-height:1;user-select:none;overflow:hidden;}
     .footer-copy{font-size:0.72rem;color:#333;margin-top:16px;padding-bottom:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
 
     @media(max-width:768px){
@@ -85,7 +85,29 @@
       .writeup-actions{align-items:flex-start;}
       .stats{gap:30px;}
     }
-  </style>
+  
+html{scroll-behavior:smooth}
+body{position:relative}
+body::before{content:"";position:fixed;inset:-50%;z-index:0;pointer-events:none;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");animation:grain 8s steps(6) infinite;mix-blend-mode:overlay}
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(rgba(0,212,170,.02) 1px,transparent 1px) 0 0/100% 3px;opacity:.5}
+@keyframes grain{0%{transform:translate(0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}to{transform:translate(0)}}
+nav,main,footer{position:relative;z-index:1}
+.hero{position:relative}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(#111a20 1px,transparent 1px),linear-gradient(90deg,#111a20 1px,transparent 1px);background-size:52px 52px;-webkit-mask-image:radial-gradient(ellipse 70% 65% at 30% 45%,#000,transparent 90%);mask-image:radial-gradient(ellipse 70% 65% at 30% 45%,#000,transparent 90%);opacity:.55}
+.logo{display:inline-flex;align-items:center;font-family:'Chakra Petch';font-weight:700;letter-spacing:1px}
+.logo .ldot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);margin-right:9px;animation:pulseDot 2s infinite}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.5}}
+.btn{color:#03120d!important;font-weight:700;border-radius:6px;transition:.2s}
+.btn:hover{box-shadow:0 0 22px rgba(0,212,170,.3);transform:translateY(-2px)}
+.links a:first-child{color:#03120d!important;font-weight:700}
+.links a{border-radius:6px;transition:.18s}.links a:hover{border-color:var(--red);color:var(--red)}
+.tag{border-radius:6px}
+.card{border-radius:10px;transition:.2s}.card:hover{border-color:#2a3d48;transform:translateY(-3px)}
+.pill{border-radius:20px;color:var(--green);border-color:rgba(0,212,170,.3)}
+.stats{border-radius:10px;overflow:hidden}
+.footer-name{-webkit-text-stroke:1px #05231c}
+::selection{background:rgba(0,212,170,.3);color:#fff}
+</style>
 </head>
 <body>
 
@@ -157,10 +179,10 @@
       <a href="https://www.linkedin.com/in/rasaq-ayomide-sec" style="color:var(--red);text-decoration:none;" target="_blank" rel="noopener noreferrer">LinkedIn</a> &nbsp;·&nbsp;
       <a href="https://hackerone.com/calmay" style="color:var(--red);text-decoration:none;" target="_blank" rel="noopener noreferrer">HackerOne</a>
     </div>
-    <div class="footer-name">CALM AY</div>
+    <div class="footer-name">0xC4LM4Y</div>
     <div class="footer-copy">
       <span>© 2026 Rasaq Ayomide · All rights reserved</span>
-      <span style="color:#2a0000;">calm-ay.github.io/bug-bounty-reports</span>
+      <span style="color:#05231c;">calm-ay.github.io/bug-bounty-reports</span>
     </div>
   </footer>
 </div>
